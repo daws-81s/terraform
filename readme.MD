@@ -70,3 +70,43 @@ terraform plan
 ```
 terraform apply
 ```
+
+### Clarification
+
+While creating terraform resource, left side things are called as arguments, we have to use the same name as per terraform aws documentation. For example
+
+```
+resource "aws_instance" "terraform" {
+
+    ami = "ami-09c813fb71547fc4f"
+}
+```
+Here argument ami is from the documentation, right side is the value. You can directly provide the value.
+
+You may also keep the value in variable. Variable name is completely your wish.
+1. It can be same name like ami
+2. It can be different name like ami_id
+
+```
+resource "aws_instance" "terraform" {
+
+    ami = var.ami_id
+}
+
+variable "ami_id" {
+    default = "ami-09c813fb71547fc4f"
+}
+```
+
+or
+
+```
+resource "aws_instance" "terraform" {
+
+    ami = var.ami
+}
+
+variable "ami" {
+    default = "ami-09c813fb71547fc4f"
+}
+```
